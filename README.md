@@ -1,3 +1,3 @@
-# Lubna.dev
+# Blank eleventy template
 
-Source code for lubna.dev - built with 11ty.
+A boilerplate template to get started with [eleventy](https://github.com/11ty/eleventy).
