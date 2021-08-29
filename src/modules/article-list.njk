@@ -1,0 +1,10 @@
+{% for post in postslist | reverse %}
+    <article>
+        <img width="300" src="{{ post.url | url }}{{ post.data.thumbnail }}" alt="" loading="lazy"/>
+        <h2>
+            <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+        </h2>
+        <time datetime="{{ page.date | dateString }}">{{page.date | dateString('d LLLL yyyy')}}</time>
+        <p>{{ post.data.description }}</p>
+    </article>
+{% endfor %}

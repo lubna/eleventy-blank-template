@@ -1,0 +1,13 @@
+---
+layout: base
+permalink: /articles/
+title: Latest articles
+eleventyNavigation:
+  key: Articles
+  order: 1
+---
+
+<section class="wrapper">
+  {% set postslist = collections.posts %}
+  {% include "article-list.njk" %}
+</section>

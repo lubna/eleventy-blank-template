@@ -1,0 +1,83 @@
+$narrow-type: 54em;
+$wide-type: 72em;
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type(
+  $min-font-size,
+  $max-font-size,
+  $min-vw: $narrow-type,
+  $max-vw: $wide-type
+) {
+  font-size: $min-font-size;
+  @media screen and (min-width: $min-vw) {
+    font-size: calc(
+      #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+        ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+    );
+  }
+  @media screen and (min-width: $max-vw) {
+    font-size: $max-font-size;
+  }
+}
+
+.type-hero {
+  @include fluid-type(4rem, 5.5rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.15rem;
+}
+
+.type-heading {
+  @include fluid-type(2rem, 2.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.125rem;
+}
+
+.type-subheading {
+  @include fluid-type(1.625rem, 2rem);
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: -0.015rem;
+}
+
+.type-subheading--bold {
+  @extend .type-subheading;
+  font-weight: 700;
+}
+
+.type-standout {
+  font-size: 1.375rem;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: -0.015rem;
+}
+
+.type-standout--bold {
+  @extend .type-standout;
+  font-weight: 700;
+}
+
+p,
+.type-body {
+  font-size: 1.125rem;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.type-body--bold {
+  @extend .type-body;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+}
+
+.type-small {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0.02rem;
+}

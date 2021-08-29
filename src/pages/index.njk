@@ -1,0 +1,13 @@
+---
+layout: base
+permalink: /
+eleventyNavigation:
+  key: Home
+  order: 0
+---
+<section class="wrapper">
+  <h1>Hello world!</h1>
+
+  {% set postslist = collections.posts | subList(-2) %}
+  {% include "article-list.njk" %}
+</section>

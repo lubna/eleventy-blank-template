@@ -1,0 +1,46 @@
+---
+layout: base.njk
+additionalStyleSheet: post
+templateClass: post
+---
+
+<article class="wrapper">
+
+  <img src="{{ page.url + thumbnail | url }}" alt="" loading="lazy"/>
+
+  <h1>{{ title }}</h1>
+
+  <time datetime="{{ page.date | dateString }}">{{page.date | dateString('d LLLL yyyy')}}</time>
+  {% if tags.length > 0 %}
+    <ul class="post__tags">
+      {%- for tag in tags -%}
+        {%- set tagUrl %}/tags/{{ tag | slug }}/{% endset -%}
+        <li>
+          <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+        </li>
+      {%- endfor %}
+    </ul>
+  {% endif %}
+
+  <div>
+    {{ content | safe }}
+  </div>
+
+  {%- if collections.posts %}
+    {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
+    {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+    {%- if nextPost or previousPost %}
+
+      <ul>
+        {%- if nextPost %}
+          <li>Next: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a>
+          </li>
+        {% endif %}
+        {%- if previousPost %}
+          <li>Previous: <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a>
+          </li>
+        {% endif %}
+      </ul>
+    {%- endif %}
+  {%- endif %}
+</article>
